@@ -3,35 +3,9 @@
 import { Box, Container, Typography, Paper, Stack } from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { experienceData } from '@/data';
 
 export default function Experience() {
-    const experiences = [
-        {
-            title: 'Senior Front-End Developer',
-            company: 'Freelance (Upwork)',
-            period: '2020 - Present',
-            description: 'Delivering high-quality front-end solutions for clients worldwide, specializing in React.js and Next.js applications.',
-            achievements: [
-                'Built 20+ scalable web applications for diverse clients',
-                'Maintained 100% client satisfaction with focus on loveable UIs',
-                'Specialized in dashboard development and data visualization',
-                'Implemented responsive designs and API integrations',
-            ],
-        },
-        {
-            title: 'Front-End Developer',
-            company: 'Various Projects',
-            period: '2018 - 2020',
-            description: 'Focused on creating user-friendly interfaces with modern JavaScript frameworks and UI libraries.',
-            achievements: [
-                'Developed responsive web applications using React and Vue.js',
-                'Collaborated with design teams to implement pixel-perfect UIs',
-                'Optimized application performance and user experience',
-                'Integrated REST APIs and third-party services',
-            ],
-        },
-    ];
-
     return (
         <Box
             component="section"
@@ -47,8 +21,6 @@ export default function Experience() {
                     align="center"
                     sx={{
                         mb: 2,
-                        fontSize: { xs: '2rem', md: '3rem' },
-                        fontWeight: 700,
                         background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                         backgroundClip: 'text',
                         WebkitBackgroundClip: 'text',
@@ -62,7 +34,7 @@ export default function Experience() {
                     variant="h6"
                     align="center"
                     sx={{
-                        mb: 6,
+                        mb: 8,
                         color: 'text.secondary',
                         maxWidth: '800px',
                         mx: 'auto',
@@ -71,49 +43,56 @@ export default function Experience() {
                     My professional journey building exceptional web experiences
                 </Typography>
 
-                <Stack spacing={4}>
-                    {experiences.map((exp, index) => (
+                <Stack spacing={4} sx={{ maxWidth: '900px', mx: 'auto', position: 'relative' }}>
+                    {/* Vertical Line */}
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            left: { xs: 28, md: 40 },
+                            top: 20,
+                            bottom: 20,
+                            width: 2,
+                            background: 'linear-gradient(180deg, #6366f1 0%, #ec4899 100%)',
+                            opacity: 0.3,
+                            zIndex: 0,
+                        }}
+                    />
+
+                    {experienceData.map((exp, index) => (
                         <Paper
                             key={index}
                             elevation={0}
                             sx={{
                                 p: 4,
-                                background: 'rgba(30, 41, 59, 0.5)',
-                                backdropFilter: 'blur(10px)',
-                                border: '1px solid rgba(99, 102, 241, 0.2)',
+                                background: 'rgba(30, 41, 59, 0.4)',
+                                backdropFilter: 'blur(12px)',
+                                border: '1px solid rgba(255, 255, 255, 0.05)',
+                                borderRadius: 4,
                                 position: 'relative',
-                                overflow: 'hidden',
+                                zIndex: 1,
                                 transition: 'all 0.3s ease',
+                                ml: { xs: 6, md: 8 },
                                 '&:hover': {
-                                    border: '1px solid rgba(99, 102, 241, 0.5)',
+                                    border: '1px solid rgba(99, 102, 241, 0.3)',
                                     transform: 'translateX(8px)',
-                                },
-                                '&:before': {
-                                    content: '""',
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 0,
-                                    bottom: 0,
-                                    width: '4px',
-                                    background: 'linear-gradient(180deg, #6366f1 0%, #ec4899 100%)',
                                 },
                             }}
                         >
-                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ sm: 'center' }} sx={{ mb: 2 }}>
-                                <Box
-                                    sx={{
-                                        width: 60,
-                                        height: 60,
-                                        borderRadius: 2,
-                                        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%)',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        flexShrink: 0,
-                                    }}
-                                >
-                                    <WorkIcon sx={{ fontSize: 32, color: 'primary.main' }} />
-                                </Box>
+                            {/* Dot */}
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    left: { xs: -24, md: -34 },
+                                    top: 40,
+                                    width: 16,
+                                    height: 16,
+                                    borderRadius: '50%',
+                                    background: '#1e293b',
+                                    border: '4px solid #6366f1',
+                                }}
+                            />
+
+                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} alignItems="flex-start" sx={{ mb: 2 }}>
                                 <Box sx={{ flex: 1 }}>
                                     <Typography
                                         variant="h5"
@@ -125,14 +104,26 @@ export default function Experience() {
                                     >
                                         {exp.title}
                                     </Typography>
-                                    <Stack direction="row" spacing={2} flexWrap="wrap">
-                                        <Typography variant="body1" sx={{ color: 'primary.main', fontWeight: 600 }}>
-                                            {exp.company}
-                                        </Typography>
-                                        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                                            {exp.period}
-                                        </Typography>
-                                    </Stack>
+                                    <Typography variant="h6" sx={{ color: 'primary.main', mb: 1, fontSize: '1.1rem' }}>
+                                        {exp.company}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ color: 'text.tertiary', fontStyle: 'italic', mb: 2 }}>
+                                        {exp.period}
+                                    </Typography>
+                                </Box>
+                                <Box
+                                    sx={{
+                                        width: 50,
+                                        height: 50,
+                                        borderRadius: 2,
+                                        background: 'rgba(99, 102, 241, 0.1)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0,
+                                    }}
+                                >
+                                    <WorkIcon sx={{ color: 'primary.main' }} />
                                 </Box>
                             </Stack>
 
@@ -141,7 +132,7 @@ export default function Experience() {
                                 sx={{
                                     mb: 3,
                                     color: 'text.secondary',
-                                    lineHeight: 1.8,
+                                    lineHeight: 1.7,
                                 }}
                             >
                                 {exp.description}

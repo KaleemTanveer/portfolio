@@ -1,10 +1,17 @@
 'use client';
 
-import { Box, Container, Typography, Button, Stack, Paper } from '@mui/material';
+import { Box, Container, Typography, Button, Stack, Paper, Link } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import { contactData } from '@/data';
+
+// Custom Upwork Icon (Simple SVG representation)
+const UpworkIcon = (props: any) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.077.008-.042c.209-1.187.715-2.28 1.488-3.197.8-.951 1.787-1.63 2.955-1.996a5.19 5.19 0 0 1 1.62-.257c2.261 0 4.212 1.95 4.212 4.211 0 1.965-1.465 3.582-3.321 3.96l.194.402c.866 1.832 2.051 3.505 3.554 4.965l-1.657 1.657c-1.673-1.673-3.018-3.568-3.965-5.632l-.568-1.24c-.218.665-.568 1.282-1.028 1.815-1.396 1.616-3.417 2.545-5.545 2.545-2.828 0-5.118-2.257-5.118-5.085V1.24h2.76v7.712c0 1.343 1.054 2.454 2.358 2.454 1.272 0 2.358-1.026 2.358-2.43V1.24h2.76v7.354c0 .324-.038.636-.109.936l-.885 4.304a9.907 9.907 0 0 1-1.602 3.864l1.962 1.576c.725-.909 1.309-1.958 1.713-3.11z" />
+    </svg>
+);
 
 export default function Contact() {
     return (
@@ -33,8 +40,6 @@ export default function Contact() {
                     align="center"
                     sx={{
                         mb: 2,
-                        fontSize: { xs: '2rem', md: '3rem' },
-                        fontWeight: 700,
                         background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                         backgroundClip: 'text',
                         WebkitBackgroundClip: 'text',
@@ -48,7 +53,7 @@ export default function Contact() {
                     variant="h6"
                     align="center"
                     sx={{
-                        mb: 6,
+                        mb: 8,
                         color: 'text.secondary',
                         maxWidth: '800px',
                         mx: 'auto',
@@ -58,156 +63,98 @@ export default function Contact() {
                 </Typography>
 
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={{ maxWidth: '800px', width: '100%' }}>
+                    <Box sx={{ maxWidth: '600px', width: '100%' }}>
                         <Paper
                             elevation={0}
                             sx={{
-                                p: 5,
-                                background: 'rgba(30, 41, 59, 0.5)',
-                                backdropFilter: 'blur(10px)',
+                                p: { xs: 4, md: 6 },
+                                background: 'rgba(30, 41, 59, 0.6)',
+                                backdropFilter: 'blur(12px)',
                                 border: '1px solid rgba(99, 102, 241, 0.2)',
+                                borderRadius: 4,
+                                boxShadow: '0 20px 40px rgba(15, 23, 42, 0.5)',
                             }}
                         >
-                            <Stack spacing={3}>
-                                <Box
+                            <Stack spacing={4} alignItems="center">
+                                <Button
+                                    variant="contained"
+                                    size="large"
+                                    href={contactData.upwork}
+                                    target="_blank"
+                                    startIcon={<UpworkIcon />}
+                                    fullWidth
                                     sx={{
-                                        textAlign: 'center',
-                                        mb: 3,
+                                        py: 2,
+                                        fontSize: '1.2rem',
+                                        background: '#14a800', // Upwork Green
+                                        color: 'white',
+                                        '&:hover': {
+                                            background: '#108a00',
+                                            transform: 'translateY(-2px)',
+                                            boxShadow: '0 8px 16px rgba(20, 168, 0, 0.3)',
+                                        },
+                                        transition: 'all 0.3s ease',
                                     }}
                                 >
-                                    <RocketLaunchIcon
-                                        sx={{
-                                            fontSize: 64,
-                                            color: 'primary.main',
-                                            mb: 2,
-                                        }}
-                                    />
-                                    <Typography
-                                        variant="h4"
-                                        sx={{
-                                            fontWeight: 700,
-                                            mb: 2,
-                                            color: 'text.primary',
-                                        }}
-                                    >
-                                        Get In Touch
-                                    </Typography>
-                                    <Typography
-                                        variant="body1"
+                                    Hire Me on Upwork
+                                </Button>
+
+                                <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', gap: 2 }}>
+                                    <Box sx={{ flex: 1, height: '1px', bgcolor: 'rgba(255,255,255,0.1)' }} />
+                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>OR</Typography>
+                                    <Box sx={{ flex: 1, height: '1px', bgcolor: 'rgba(255,255,255,0.1)' }} />
+                                </Box>
+
+                                <Button
+                                    variant="outlined"
+                                    size="large"
+                                    href={`mailto:${contactData.email}`}
+                                    startIcon={<EmailIcon />}
+                                    fullWidth
+                                    sx={{
+                                        py: 1.5,
+                                        borderColor: 'rgba(255,255,255,0.2)',
+                                        color: 'white',
+                                        '&:hover': {
+                                            borderColor: 'white',
+                                            bgcolor: 'rgba(255,255,255,0.05)',
+                                        },
+                                    }}
+                                >
+                                    Send me an Email
+                                </Button>
+
+                                <Stack direction="row" spacing={3} justifyContent="center" sx={{ pt: 2 }}>
+                                    <Link
+                                        href={contactData.linkedin}
+                                        target="_blank"
+                                        rel="noopener"
                                         sx={{
                                             color: 'text.secondary',
-                                            lineHeight: 1.8,
-                                            mb: 3,
+                                            transition: 'color 0.3s',
+                                            '&:hover': { color: '#0077b5' }
                                         }}
                                     >
-                                        I&apos;m currently available for freelance work and exciting projects.
-                                        Whether you need a scalable React application, a beautiful Next.js website,
-                                        or help with your existing codebase, I&apos;d love to hear from you!
-                                    </Typography>
-                                </Box>
-
-                                <Stack spacing={2}>
-                                    <Button
-                                        variant="contained"
-                                        size="large"
-                                        href="mailto:kaleem.ullah@example.com"
-                                        startIcon={<EmailIcon />}
+                                        <LinkedInIcon sx={{ fontSize: 32 }} />
+                                    </Link>
+                                    <Link
+                                        href={contactData.github}
+                                        target="_blank"
+                                        rel="noopener"
                                         sx={{
-                                            py: 2,
-                                            fontSize: '1.1rem',
-                                            background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                                            '&:hover': {
-                                                background: 'linear-gradient(135deg, #4f46e5 0%, #4338ca 100%)',
-                                                transform: 'scale(1.02)',
-                                            },
-                                            transition: 'all 0.3s ease',
+                                            color: 'text.secondary',
+                                            transition: 'color 0.3s',
+                                            '&:hover': { color: 'white' }
                                         }}
                                     >
-                                        Email Me
-                                    </Button>
-
-                                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-                                        <Button
-                                            variant="outlined"
-                                            size="large"
-                                            href="https://www.linkedin.com/in/kaleem-ullah"
-                                            target="_blank"
-                                            startIcon={<LinkedInIcon />}
-                                            sx={{
-                                                flex: 1,
-                                                py: 1.5,
-                                                borderColor: 'primary.main',
-                                                color: 'primary.main',
-                                                '&:hover': {
-                                                    borderColor: 'primary.light',
-                                                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                                                },
-                                            }}
-                                        >
-                                            LinkedIn
-                                        </Button>
-
-                                        <Button
-                                            variant="outlined"
-                                            size="large"
-                                            href="https://github.com/kaleem-ullah"
-                                            target="_blank"
-                                            startIcon={<GitHubIcon />}
-                                            sx={{
-                                                flex: 1,
-                                                py: 1.5,
-                                                borderColor: 'secondary.main',
-                                                color: 'secondary.main',
-                                                '&:hover': {
-                                                    borderColor: 'secondary.light',
-                                                    backgroundColor: 'rgba(236, 72, 153, 0.1)',
-                                                },
-                                            }}
-                                        >
-                                            GitHub
-                                        </Button>
-                                    </Stack>
+                                        <GitHubIcon sx={{ fontSize: 32 }} />
+                                    </Link>
                                 </Stack>
-
-                                <Box
-                                    sx={{
-                                        mt: 4,
-                                        pt: 4,
-                                        borderTop: '1px solid rgba(99, 102, 241, 0.2)',
-                                        textAlign: 'center',
-                                    }}
-                                >
-                                    <Typography
-                                        variant="h5"
-                                        sx={{
-                                            fontWeight: 600,
-                                            background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
-                                            backgroundClip: 'text',
-                                            WebkitBackgroundClip: 'text',
-                                            WebkitTextFillColor: 'transparent',
-                                        }}
-                                    >
-                                        Let&apos;s build loveable web applications together!
-                                    </Typography>
-                                </Box>
                             </Stack>
                         </Paper>
                     </Box>
                 </Box>
             </Container>
-
-            <Box
-                sx={{
-                    mt: 8,
-                    py: 3,
-                    borderTop: '1px solid rgba(99, 102, 241, 0.2)',
-                    textAlign: 'center',
-                }}
-            >
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    © {new Date().getFullYear()} Kaleem Ullah. Built with Next.js, TypeScript, and Material-UI.
-                </Typography>
-            </Box>
         </Box>
     );
 }

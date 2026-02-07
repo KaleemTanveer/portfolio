@@ -1,27 +1,10 @@
 'use client';
 
 import { Box, Container, Typography, Paper, Chip } from '@mui/material';
+import { motion } from 'framer-motion';
+import { skillCategories } from '@/data';
 
 export default function Skills() {
-    const skillCategories = [
-        {
-            category: 'Frontend Frameworks',
-            skills: ['React.js', 'Next.js', 'Vue.js'],
-        },
-        {
-            category: 'Languages',
-            skills: ['JavaScript', 'TypeScript', 'HTML5', 'CSS3'],
-        },
-        {
-            category: 'UI Libraries',
-            skills: ['Material-UI', 'Tailwind CSS', 'Chakra UI', 'Bootstrap'],
-        },
-        {
-            category: 'Tools & Others',
-            skills: ['Git', 'REST APIs', 'GraphQL', 'Responsive Design', 'Performance Optimization'],
-        },
-    ];
-
     return (
         <Box
             component="section"
@@ -37,8 +20,6 @@ export default function Skills() {
                     align="center"
                     sx={{
                         mb: 2,
-                        fontSize: { xs: '2rem', md: '3rem' },
-                        fontWeight: 700,
                         background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                         backgroundClip: 'text',
                         WebkitBackgroundClip: 'text',
@@ -52,7 +33,7 @@ export default function Skills() {
                     variant="h6"
                     align="center"
                     sx={{
-                        mb: 6,
+                        mb: 8,
                         color: 'text.secondary',
                         maxWidth: '800px',
                         mx: 'auto',
@@ -71,17 +52,24 @@ export default function Skills() {
                     {skillCategories.map((category, index) => (
                         <Paper
                             key={index}
+                            component={motion.div}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             elevation={0}
                             sx={{
                                 p: 4,
                                 height: '100%',
-                                background: 'rgba(30, 41, 59, 0.5)',
-                                backdropFilter: 'blur(10px)',
-                                border: '1px solid rgba(99, 102, 241, 0.2)',
+                                background: 'rgba(30, 41, 59, 0.4)',
+                                backdropFilter: 'blur(12px)',
+                                border: '1px solid rgba(255, 255, 255, 0.05)',
+                                borderRadius: 4,
                                 transition: 'all 0.3s ease',
                                 '&:hover': {
-                                    border: '1px solid rgba(99, 102, 241, 0.5)',
-                                    boxShadow: '0 8px 24px rgba(99, 102, 241, 0.3)',
+                                    border: '1px solid rgba(99, 102, 241, 0.3)',
+                                    boxShadow: '0 8px 24px rgba(99, 102, 241, 0.15)',
+                                    transform: 'translateY(-4px)',
                                 },
                             }}
                         >
@@ -89,8 +77,11 @@ export default function Skills() {
                                 variant="h5"
                                 sx={{
                                     mb: 3,
-                                    fontWeight: 600,
+                                    fontWeight: 700,
                                     color: 'primary.main',
+                                    borderBottom: '2px solid rgba(99, 102, 241, 0.2)',
+                                    pb: 1,
+                                    display: 'inline-block',
                                 }}
                             >
                                 {category.category}
@@ -101,18 +92,19 @@ export default function Skills() {
                                         key={skillIndex}
                                         label={skill}
                                         sx={{
-                                            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%)',
+                                            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
                                             color: 'text.primary',
                                             fontWeight: 500,
                                             fontSize: '0.95rem',
                                             px: 1,
                                             py: 2.5,
-                                            border: '1px solid rgba(99, 102, 241, 0.3)',
+                                            border: '1px solid rgba(99, 102, 241, 0.2)',
                                             transition: 'all 0.3s ease',
                                             '&:hover': {
-                                                background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(236, 72, 153, 0.4) 100%)',
-                                                transform: 'translateY(-2px)',
-                                                border: '1px solid rgba(99, 102, 241, 0.6)',
+                                                background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(236, 72, 153, 0.25) 100%)',
+                                                transform: 'translateY(-2px) scale(1.05)',
+                                                border: '1px solid rgba(99, 102, 241, 0.4)',
+                                                boxShadow: '0 4px 12px rgba(99, 102, 241, 0.2)',
                                             },
                                         }}
                                     />

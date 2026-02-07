@@ -3,18 +3,11 @@
 import { AppBar, Toolbar, Typography, Button, Box, Container, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, useScrollTrigger } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
+import { navItems } from '@/data';
 
 export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
-
-    const navItems = [
-        { label: 'About', href: '#about' },
-        { label: 'Skills', href: '#skills' },
-        { label: 'Projects', href: '#projects' },
-        { label: 'Experience', href: '#experience' },
-        { label: 'Contact', href: '#contact' },
-    ];
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

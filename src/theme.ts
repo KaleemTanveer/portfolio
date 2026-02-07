@@ -20,26 +20,34 @@ export const theme = createTheme({
       paper: '#1e293b',
     },
     text: {
-      primary: '#f1f5f9',
-      secondary: '#cbd5e1',
+      primary: '#f8fafc', // Slate 50
+      secondary: '#94a3b8', // Slate 400
     },
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
-      fontWeight: 700,
-      fontSize: '3.5rem',
-      lineHeight: 1.2,
+      fontWeight: 800,
+      fontSize: '4rem',
+      lineHeight: 1.1,
+      letterSpacing: '-0.02em',
+      '@media (max-width:600px)': {
+        fontSize: '2.5rem',
+      },
     },
     h2: {
       fontWeight: 700,
-      fontSize: '2.5rem',
-      lineHeight: 1.3,
+      fontSize: '3rem',
+      lineHeight: 1.2,
+      letterSpacing: '-0.01em',
+      '@media (max-width:600px)': {
+        fontSize: '2rem',
+      },
     },
     h3: {
       fontWeight: 600,
       fontSize: '2rem',
-      lineHeight: 1.4,
+      lineHeight: 1.3,
     },
     h4: {
       fontWeight: 600,
@@ -52,33 +60,40 @@ export const theme = createTheme({
       lineHeight: 1.5,
     },
     body1: {
-      fontSize: '1rem',
-      lineHeight: 1.7,
+      fontSize: '1.125rem',
+      lineHeight: 1.8,
+      color: '#94a3b8',
+    },
+    button: {
+      fontWeight: 600,
+      textTransform: 'none',
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 16,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none',
-          fontWeight: 600,
+          borderRadius: 50,
           padding: '10px 24px',
-          fontSize: '1rem',
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
+          },
+        },
+        containedPrimary: {
+          background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundImage: 'none',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: '0 12px 24px rgba(99, 102, 241, 0.2)',
-          },
+          background: 'rgba(30, 41, 59, 0.6)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
         },
       },
     },

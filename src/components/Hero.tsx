@@ -1,8 +1,10 @@
 'use client';
 
 import { Box, Container, Typography, Button, Stack } from '@mui/material';
-
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { motion } from 'framer-motion';
+import { heroData } from '@/data';
+import Typewriter from 'typewriter-effect';
 
 export default function Hero() {
     const scrollToSection = (id: string) => {
@@ -22,164 +24,202 @@ export default function Hero() {
                 background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
                 position: 'relative',
                 overflow: 'hidden',
-                '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)',
-                    animation: 'pulse 4s ease-in-out infinite',
-                },
-                '@keyframes pulse': {
-                    '0%, 100%': { opacity: 0.3 },
-                    '50%': { opacity: 0.6 },
-                },
             }}
         >
-            <Container maxWidth="lg">
-                <Stack spacing={4} alignItems="center" textAlign="center" sx={{ position: 'relative', zIndex: 1 }}>
-                    <Typography
-                        variant="h5"
-                        sx={{
-                            color: 'primary.main',
-                            fontWeight: 600,
-                            opacity: 0,
-                            animation: 'fadeInUp 0.8s ease forwards',
-                            animationDelay: '0.2s',
-                            '@keyframes fadeInUp': {
-                                from: { opacity: 0, transform: 'translateY(20px)' },
-                                to: { opacity: 1, transform: 'translateY(0)' },
-                            },
-                        }}
-                    >
-                        Hello, I&apos;m
-                    </Typography>
+            {/* Background Animations */}
+            <Box
+                component={motion.div}
+                animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                sx={{
+                    position: 'absolute',
+                    top: '-20%',
+                    right: '-10%',
+                    width: '600px',
+                    height: '600px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)',
+                    filter: 'blur(60px)',
+                    zIndex: 0,
+                }}
+            />
+            <Box
+                component={motion.div}
+                animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.2, 0.4, 0.2],
+                }}
+                transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                }}
+                sx={{
+                    position: 'absolute',
+                    bottom: '-10%',
+                    left: '-10%',
+                    width: '500px',
+                    height: '500px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%)',
+                    filter: 'blur(60px)',
+                    zIndex: 0,
+                }}
+            />
 
-                    <Typography
-                        variant="h1"
-                        sx={{
-                            fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
-                            fontWeight: 800,
-                            background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            opacity: 0,
-                            animation: 'fadeInUp 0.8s ease forwards',
-                            animationDelay: '0.4s',
-                        }}
+            <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+                <Stack spacing={4} alignItems="center" textAlign="center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        Kaleem Ullah
-                    </Typography>
+                        <Typography
+                            variant="h5"
+                            sx={{ color: 'primary.main', fontWeight: 600, mb: 2 }}
+                        >
+                            {heroData.greeting}
+                        </Typography>
+                    </motion.div>
 
-                    <Typography
-                        variant="h3"
-                        sx={{
-                            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-                            fontWeight: 600,
-                            color: 'text.secondary',
-                            opacity: 0,
-                            animation: 'fadeInUp 0.8s ease forwards',
-                            animationDelay: '0.6s',
-                        }}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        Front-End Developer
-                    </Typography>
-
-                    <Typography
-                        variant="h6"
-                        sx={{
-                            maxWidth: '800px',
-                            color: 'text.secondary',
-                            lineHeight: 1.8,
-                            opacity: 0,
-                            animation: 'fadeInUp 0.8s ease forwards',
-                            animationDelay: '0.8s',
-                        }}
-                    >
-                        Building <Box component="span" sx={{ color: 'primary.main', fontWeight: 600 }}>scalable</Box>,
-                        <Box component="span" sx={{ color: 'secondary.main', fontWeight: 600 }}> responsive</Box>, and
-                        <Box component="span" sx={{ color: 'primary.light', fontWeight: 600 }}> loveable</Box> web applications
-                        with React.js, Next.js, TypeScript, and Material-UI
-                    </Typography>
-
-                    <Stack
-                        direction={{ xs: 'column', sm: 'row' }}
-                        spacing={2}
-                        sx={{
-                            opacity: 0,
-                            animation: 'fadeInUp 0.8s ease forwards',
-                            animationDelay: '1s',
-                        }}
-                    >
-                        <Button
-                            variant="contained"
-                            size="large"
-                            onClick={() => scrollToSection('contact')}
+                        <Typography
+                            variant="h1"
                             sx={{
-                                px: 4,
-                                py: 1.5,
-                                fontSize: '1.1rem',
-                                background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                                '&:hover': {
-                                    background: 'linear-gradient(135deg, #4f46e5 0%, #4338ca 100%)',
-                                    transform: 'scale(1.05)',
-                                },
-                                transition: 'all 0.3s ease',
+                                background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                                backgroundClip: 'text',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                mb: 2,
                             }}
                         >
-                            Let&apos;s Work Together
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            size="large"
-                            onClick={() => scrollToSection('projects')}
+                            {heroData.name}
+                        </Typography>
+                    </motion.div>
+
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                        <Typography variant="h3" sx={{ color: 'text.secondary', mb: 3, minHeight: '1.5em' }}>
+                            <Typewriter
+                                options={{
+                                    strings: heroData.roles,
+                                    autoStart: true,
+                                    loop: true,
+                                    deleteSpeed: 50,
+                                    delay: 80,
+                                }}
+                            />
+                        </Typography>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                    >
+                        <Typography
+                            variant="h6"
                             sx={{
-                                px: 4,
-                                py: 1.5,
-                                fontSize: '1.1rem',
-                                borderColor: 'primary.main',
-                                color: 'primary.main',
-                                '&:hover': {
-                                    borderColor: 'primary.light',
-                                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                                    transform: 'scale(1.05)',
-                                },
-                                transition: 'all 0.3s ease',
+                                maxWidth: '800px',
+                                color: 'text.secondary',
+                                lineHeight: 1.8,
+                                mx: 'auto',
                             }}
                         >
-                            View My Work
-                        </Button>
-                    </Stack>
+                            {heroData.descriptionLines.map((line, index) => {
+                                if (typeof line === 'string') return line;
+                                return (
+                                    <Box
+                                        key={index}
+                                        component="span"
+                                        sx={{ color: line.color, fontWeight: 600 }}
+                                    >
+                                        {line.text}
+                                    </Box>
+                                );
+                            })}
+                        </Typography>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.8 }}
+                    >
+                        <Stack
+                            direction={{ xs: 'column', sm: 'row' }}
+                            spacing={3}
+                            sx={{ mt: 4 }}
+                        >
+                            <Button
+                                variant="contained"
+                                size="large"
+                                onClick={() => scrollToSection('contact')}
+                                sx={{
+                                    px: 5,
+                                    py: 1.8,
+                                    fontSize: '1.1rem',
+                                    borderRadius: '50px',
+                                }}
+                            >
+                                {heroData.cta.primary}
+                            </Button>
+                            <Button
+                                variant="outlined"
+                                size="large"
+                                onClick={() => scrollToSection('projects')}
+                                sx={{
+                                    px: 5,
+                                    py: 1.8,
+                                    fontSize: '1.1rem',
+                                    borderRadius: '50px',
+                                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                                    color: 'white',
+                                    '&:hover': {
+                                        borderColor: 'white',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                                    },
+                                }}
+                            >
+                                {heroData.cta.secondary}
+                            </Button>
+                        </Stack>
+                    </motion.div>
 
                     <Box
+                        component={motion.div}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, y: [0, 10, 0] }}
+                        transition={{
+                            opacity: { delay: 1.5, duration: 1 },
+                            y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                        }}
                         sx={{
                             position: 'absolute',
-                            bottom: 20,
+                            bottom: 40,
                             left: '50%',
                             transform: 'translateX(-50%)',
-                            opacity: 0,
-                            animation: 'fadeInBounce 1s ease forwards',
-                            animationDelay: '1.2s',
-                            '@keyframes fadeInBounce': {
-                                '0%': { opacity: 0, transform: 'translate(-50%, -20px)' },
-                                '100%': { opacity: 1, transform: 'translate(-50%, 0)' },
-                            },
+                            cursor: 'pointer',
                         }}
                     >
                         <ArrowDownwardIcon
-                            sx={{
-                                fontSize: '2.5rem',
-                                color: 'primary.main',
-                                animation: 'bounce 2s ease-in-out infinite',
-                                '@keyframes bounce': {
-                                    '0%, 100%': { transform: 'translateY(0)' },
-                                    '50%': { transform: 'translateY(10px)' },
-                                },
-                                cursor: 'pointer',
-                            }}
+                            sx={{ fontSize: '2.5rem', color: 'text.secondary' }}
                             onClick={() => scrollToSection('about')}
                         />
                     </Box>
